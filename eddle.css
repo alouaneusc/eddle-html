@@ -113,3 +113,95 @@ th{
     background-color: yellow;
   }
   
+  .select-box{
+    margin-top: 5px;
+    width: 500px;
+    position: relative;
+  }
+.select-option{
+    position: relative;
+    border: #000;
+    border-radius: 5px;
+
+}
+.select-option input{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    width: 100%;
+    background-color: #fff;
+    color: #000;
+    border-radius: 7px;
+    cursor: pointer;
+    font-size: 22px;
+    padding: 15px 20px;
+
+    background-color: transparent;
+    border: 1px solid #000; /* Add border style */
+    outline: 0 !important;
+
+}
+.select-option:after{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    content: "";
+    border-top: 12px solid #000;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    margin-top: -8px;
+}
+.content{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    background-color: #fff;
+    position: absolute;
+    color: #000;
+    border-radius: 7px;
+    margin-top: 15px;
+    width: 500px;
+    z-index: 99;
+    display: none;
+}
+.search input{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    width: 100%;
+    font-size: 17px;
+    padding: 15px;
+    outline: 0;
+    border: 1px solid #b3b3b3;
+    border-radius: 5px;
+}
+.options{
+    margin-top: 10px;
+    max-height: 250px;
+    overflow-y: auto;
+    padding: 0;
+}
+.options li{
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-size: 21px;
+    cursor: pointer;
+    border-bottom: 1px solid gray;
+}
+.options li:hover{
+    background-color: #f2f2f2;
+}
+.select-box.active .content{
+    display: block;
+}
+.select-box.active .select-option:after{
+    transform: rotate(-180deg);
+}
+.container {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60px;
+    margin-left: 80px;
+
+  }
+
+  #optionSearch {
+    margin-top: -16px; /* Adjust the negative margin value as needed */
+}

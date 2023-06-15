@@ -1,9 +1,27 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalabale=1">
         <title> Eddle</title>
         <link rel="stylesheet" href="eddle.css">
         <script src="eddle.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-csv/1.0.21/jquery.csv.min.js"></script>
+        <script type="text/csv" id="unparsed">
+            firstname,lastname,team,pos,season
+            Big,Edd,COL,DT,22
+            Dee,Walt,CHI,S,30
+            Tyron,Shields,CHI,CB,22
+            Tree,Gelbman,ARI,TE,21
+            Big,Edd,COL,DT,22
+            Big,Edd,COL,DT,22
+            Big,Edd,COL,DT,22
+            Big,Edd,COL,DT,22
+            Big,Edd,COL,DT,22
+            Big,Edd,COL,DT,22
+            Big,Edd,COL,DT,22
+        </script>
     </head>
     <body>
         <div class="header" >
@@ -29,9 +47,22 @@
         <div class="guesses" >
             0 of 8 guesses
         </div>
+
         <div class="container">
-            <input class="search-bar" type="text" placeholder="Enter a name">
+            <div class="select-box" >
+                <div class="select-option" >
+                        <input type="text" placeholder="Enter a name" id="soValue" readonly name="">
+                </div>
+                <div class="content" >
+                    <div class="search">
+                        <input type="text" id="optionSearch" placeholder="Search" name="">
+                    </div>
+                    <ul class="options" id="playerOptions">
+                    </ul>
+                </div>
+            </div>
         </div>
+       
         <div class="table-container" >
             <table>
                 <tr>

@@ -1,34 +1,47 @@
 document.addEventListener("DOMContentLoaded", function() {
-
-// Condition
-var condition = true; // Change this to your desired condition
-
-// Get references to the table cells
-var box1 = document.getElementById("box1");
-var box2 = document.getElementById("box2");
-var box3 = document.getElementById("box3");
-var box4 = document.getElementById("box4");
-var box5 = document.getElementById("box5");
-
-// Add or remove the CSS class based on the condition
- if (condition) {
-  box1.classList.add("green");
-  box2.classList.add("green");
-  box3.classList.add("green");
-  box4.classList.add("green");
-  box5.classList.add("green");
-}/*
-if (condition) {
-    box6.classList.add("green");
-    box7.classList.add("green");
-    box8.classList.add("green");
-    box9.classList.add("green");
-    box10.classList.add("green");
-  } else{
-    box6.classList.add("yellow");
-    box7.classList.add("yellow");
-    box8.classList.add("yellow");
-    box9.classList.add("yellow");
-    box10.classList.add("yellow");
-  } */
-});
+    let csv = document.getElementById("unparsed").innerHTML;
+    let playerArr = $.csv.toArrays(csv);
+    console.log(playerArr);
+  
+    let options = document.querySelector('.options');
+  
+    for (let i = 2; i < playerArr.length; i++) {
+      let li = document.createElement("li");
+      li.textContent = playerArr[i][0]; // Assuming the name is in the first column
+      options.appendChild(li);
+    }
+  
+    const selectBox = document.querySelector('.select-box');
+    const selectOption = document.querySelector('.select-option');
+    const soValue = document.querySelector('#soValue');
+    const optionSearch = document.querySelector('#optionSearch');
+    const optionList = document.querySelectorAll('.options li');
+  
+    selectOption.addEventListener('click', function() {
+      selectBox.classList.toggle('active');
+    });
+  
+    optionList.forEach(function(optionListSingle) {
+      optionListSingle.addEventListener('click', function() {
+        text = this.textContent;
+        soValue.value = text;
+        selectBox.classList.remove('active');
+      });
+    });
+  
+    optionSearch.addEventListener('keyup', function() {
+      var filter, li, i, textValue;
+      filter = optionSearch.value.toUpperCase();
+      li = options.getElementsByTagName('li');
+      for (i = 0; i < li.length; i++) {
+        liCount = li[i];
+        textValue = liCount.textContent || liCount.innerText;
+        if (textValue.toUpperCase().indexOf(filter) > -1) {
+          li[i].style.display = '';
+        } else {
+          li[i].style.display = 'none';
+        }
+      }
+    });
+  });
+  
