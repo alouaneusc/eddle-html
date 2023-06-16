@@ -3,7 +3,12 @@ document.addEventListener("DOMContentLoaded", function() {
     let playerArr = $.csv.toArrays(csv);
     console.log(playerArr);
     console.log(playerArr[3]);
-    console.log(playerArr[100]);
+    console.log(playerArr[100][0]);
+    console.log(playerArr[100][1]);
+    console.log(playerArr[100][2]);
+
+
+    
 
   
     let options = document.querySelector('.options');
@@ -27,20 +32,23 @@ for (let i = 2; i < playerArr.length; i++) {
       selectBox.classList.toggle('active');
     });
   
-    optionList.forEach(function(optionListSingle) {
-        optionListSingle.addEventListener('click', function() {
-          var text = this.textContent;
-          soValue.value = text;
-          var boxElements = document.querySelectorAll('[id$="1"], [id$="6"]');
-          for (var i = 0; i < boxElements.length; i++) {
-            if (boxElements[i].textContent.trim() === '') {
-              boxElements[i].textContent = text;
-              break; // Exit the loop after updating the first available box
-            }
-          }
-          selectBox.classList.remove('active');
-        });
-      });
+      optionList.forEach(function(optionListSingle) {
+            optionListSingle.addEventListener('click', function() {
+              var text = this.textContent;
+              soValue.value = text;
+              var boxElements = document.querySelectorAll('[id$="1"], [id$="6"]');
+              for (var i = 0; i < boxElements.length; i++) {
+                if (boxElements[i].textContent.trim() === '') {
+                  boxElements[i].textContent = text;
+                boxElements[i].value = i;
+                  break; // Exit the loop after updating the first available box
+                }
+              }
+              selectBox.classList.remove('active');
+            });
+          });
+
+    
       
   
     optionSearch.addEventListener('keyup', function() {
@@ -57,5 +65,8 @@ for (let i = 2; i < playerArr.length; i++) {
         }
       }
     });
+
+    
   });
+  
   

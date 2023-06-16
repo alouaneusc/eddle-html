@@ -481,12 +481,49 @@
     <body>
         <div class="header" >
             <div class="left-section">
-                <img class="info-icon" src="images/info-icon.png">
-                <img class="isfl-logo" src="images/ISFLlogo.png">
-            </div>
+                <form class="info-icon" name="" method="" action="">
+                  <input name="info-icon" type="image" src="images/info-icon.png" height="60px" onclick="showPopup('info-popup'); event.preventDefault();">
+                </form>
+                <form class="isfl-logo" name="" method="" action="">
+                  <input name="isfl-logo" type="image" src="images/ISFLlogo.png" height="50px" onclick="showPopup('isfl-popup'); event.preventDefault();">
+                </form>
+                <div class="popup" id="info-popup">
+                  <div class="overlay" onclick="hidePopup('info-popup')"></div>
+                  <div class="content">
+                    <div class="close-btn" onclick="hidePopup('info-popup')">&times;</div>
+                    <h1>How to Play</h1>
+                    <p>Guess the ISFL player in as few tries as possible <br>
+                        After each guess, the color of the tiles will change depending on how close your guess was to the player<br>
+                        In any column,  <span class="highlight-green">green</span>  represents a match<br>
+                        <span class="highlight">Yellow</span> varies: For position <span class="highlight">yellow</span> indicates correct side of the ball (offense/defense). <br>
+                        For conference, <span class="highlight">yellow</span> indicates correct conference. <br>
+                        For number and season, <span class="highlight">yellow</span> means your guess was too high.<br>
+                    </p>
+                  </div>
+                </div>
+              
+                <div class="popup" id="isfl-popup">
+                  <div class="overlay" onclick="hidePopup('isfl-popup')"></div>
+                  <div class="content">
+                    <div class="close-btn" onclick="hidePopup('isfl-popup')">&times;</div>
+                    <h1>ISFL</h1>
+                    <p><strong>ASFC:</strong> HON, ARI, OCO, AUS, NYS, SJS, NOLA <br>
+                        <strong>NSFC:</strong> CTC, YKW, SAR, CHI, BAL, COL, BER</p>
+                  </div>
+                </div>
+              </div>
+              <script>
+                function showPopup(popupId) {
+                  document.getElementById(popupId).classList.add('active');
+                }
+              
+                function hidePopup(popupId) {
+                  document.getElementById(popupId).classList.remove('active');
+                }
+              </script>
             <div class="middle-section"></div>
             <div class="right-section">
-                <img class="github-icon" src="images/snorlaxglasses.png">
+                <a href="https://github.com/alouaneusc/eddle-html" target="_blank"><img class="github-icon" src="images/snorlaxglasses.png"></a>
             </div>
         </div>
         <div class="eddle" >
