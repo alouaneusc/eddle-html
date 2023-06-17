@@ -93,6 +93,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
             // Insert a new row into the tbody
             let row = tbody.insertRow(tbody.rows.length);
+            // Add a class to the row for styling
+            row.classList.add('added-row');
 
             let cName = row.insertCell(0);
             let cTeam = row.insertCell(1);
@@ -161,8 +163,8 @@ document.addEventListener("DOMContentLoaded", function() {
               }
               
               function isPosClose() {
-                let off = ["QB", "RB", "WR", "TE", "OL", "T", "G", "C"];
-                let def = ["DE", "DT", "LB", "CB", "S"];
+                let off = ["QB", "RB", "WR", "TE", "OL", "T", "G", "C", "FB"];
+                let def = ["DE", "DT", "LB", "CB", "S", "K"];
                 
                 if (off.includes(correctPos)) {
                   //correct pos is offense
@@ -244,9 +246,9 @@ document.addEventListener("DOMContentLoaded", function() {
             guessCount++;
 
             // Display the updated guess count
-            document.getElementById("guesses").textContent = guessCount + " of 8 guesses";
+            document.getElementById("guesses").textContent = guessCount + " of 10 guesses";
 
-            if (guessCount === 8) {
+            if (guessCount === 10) {
                 const correctFullName = correctFirstName + " " + correctLastName;
                 if (confirm("You lost! The answer was " + correctFullName + ". Want to play again?")) {
                   // Restart the page
