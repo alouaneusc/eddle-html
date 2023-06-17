@@ -477,6 +477,26 @@
             Toad,Wananapaoa, YKW, LB, 40, 87
             Zephyr,Greywolf, YKW, LB, 32, 23
         </script>
+        <!-- <script>
+            var unparsedData = document.getElementById("unparsed").innerHTML;
+            var lines = unparsedData.split("\n");
+            var headers = lines[0].split(",");
+            var data = [];
+        
+            for (var i = 1; i < lines.length; i++) {
+                var obj = {};
+                var currentLine = lines[i].split(",");
+        
+                for (var j = 0; j < headers.length; j++) {
+                    obj[headers[j]] = currentLine[j];
+                }
+        
+                data.push(obj);
+            }
+        
+            var jsonData = JSON.stringify(data);
+            console.log(jsonData);
+        </script> -->
     </head>
     <body>
         <div class="header" >
@@ -495,7 +515,7 @@
                     <p>Guess the ISFL player in as few tries as possible <br>
                         After each guess, the color of the tiles will change depending on how close your guess was to the player<br>
                         In any column,  <span class="highlight-green">green</span>  represents a match<br>
-                        <span class="highlight">Yellow</span> varies: For position <span class="highlight">yellow</span> indicates correct side of the ball (offense/defense). <br>
+                        <span class="highlight">Yellow</span> varies: For position <span class="highlight">yellow</span> indicates correct side of the ball. <br>
                         For conference, <span class="highlight">yellow</span> indicates correct conference. <br>
                         For number and season, <span class="highlight">yellow</span> means your guess was too high.<br>
                     </p>
