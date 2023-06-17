@@ -1,4 +1,6 @@
 document.addEventListener("DOMContentLoaded", function() {
+
+
     // Get the script element by its ID
     const scriptElement = document.getElementById("unparsed");
   
@@ -10,6 +12,13 @@ document.addEventListener("DOMContentLoaded", function() {
   
     // Declare variables outside the loop
     let firstName, lastName, team, position, season, number;
+    let guessCount = 0;
+    let guessFirstName = "";
+    let guessLastName = "";
+    let guessTeam = "";
+    let guessPos = "";
+    let guessSeason = "";
+    let guessNumber = "";
   
     // Declare an array to hold player objects
     const players = [];
@@ -34,22 +43,18 @@ document.addEventListener("DOMContentLoaded", function() {
       // Add the player object to the array
       players.push(player);
     }
-  
-    // Function to print player info based on index
-    function printPlayerInfo(index) {
-      if (index >= 0 && index < players.length) {
-        const player = players[index];
-        console.log("Player Information:");
-        console.log("First Name:", player.firstName);
-        console.log("Last Name:", player.lastName);
-        console.log("Team:", player.team);
-        console.log("Position:", player.position);
-        console.log("Season:", player.season);
-        console.log("Number:", player.number);
-      } else {
-        console.log("Invalid player index.");
-      }
-    }
+
+     // Generate random indices to pick a player
+     const randomIndex = Math.floor(Math.random() * players.length);
+     const randomPlayer = players[randomIndex];
+     // Get the correct player's information
+     let correctFirstName = randomPlayer.firstName;
+     let correctLastName = randomPlayer.lastName;
+     let correctTeam = randomPlayer.team;
+     let correctPos = randomPlayer.position;
+     let correctSeason = randomPlayer.season;
+     let correctNumber = randomPlayer.number;
+
   
     let options = document.querySelector('.options');
   
@@ -72,29 +77,211 @@ document.addEventListener("DOMContentLoaded", function() {
       selectBox.classList.toggle('active');
     });
 
-optionList.forEach(function (optionListSingle, index) {
-    optionListSingle.addEventListener('click', function () {
-      var text = this.textContent;
-      soValue.value = text;
-      selectBox.classList.remove('active');
-  
-      // Find the selected player's index in the players array
-      const selectedPlayerIndex = index;
-  
-      // Call the printPlayerInfo function with the selected player's index
-      printPlayerInfo(selectedPlayerIndex);
-  
-      // Update the table with the selected player's information
-      const player = players[selectedPlayerIndex];
-      const fullName = `${player.firstName} ${player.lastName}`;
-  
-      document.getElementById(`box${(index) * 5 + 1}`).textContent = fullName;
-      document.getElementById(`box${(index) * 5 + 2}`).textContent = player.team;
-      document.getElementById(`box${(index) * 5 + 3}`).textContent = player.position;
-      document.getElementById(`box${(index) * 5 + 4}`).textContent = player.season;
-      document.getElementById(`box${(index) * 5 + 5}`).textContent = player.number;
-    });
-  });
+    optionList.forEach(function (optionListSingle, index) {
+        optionListSingle.addEventListener('click', function () {
+          var text = this.textContent;
+          soValue.value = text;
+          selectBox.classList.remove('active');
+            ///
+            document.getElementById("tblGuesses").classList.remove("hide");
+            
+            // Access the table element by its ID
+            let tbl = document.getElementById("tblGuesses");
+
+            // Access the tbody element within the table
+            let tbody = tbl.getElementsByTagName("tbody")[0];
+
+            // Insert a new row into the tbody
+            let row = tbody.insertRow(tbody.rows.length);
+
+            let cName = row.insertCell(0);
+            let cTeam = row.insertCell(1);
+            let cPos = row.insertCell(2);
+            let cSeason = row.insertCell(3);
+            let cNumber = row.insertCell(4);
+
+            // Get the selected player's information
+            let selectedPlayer = this.textContent;
+            let player = players.find(p => p.firstName + ' ' + p.lastName === selectedPlayer);
+
+
+
+            // Assign the player's information to the table cells
+            guessFirstName = player.firstName;
+            guessTeam = player.team;
+            guessLastName = player.lastName;
+            guessPos = player.position;
+            guessSeason = player.season;
+            guessNumber = player.number;
+            
+            cName.textContent = guessFirstName + ' ' + guessLastName;
+            cTeam.textContent = guessTeam;
+            cPos.textContent = guessPos;
+            cSeason.textContent = guessSeason;
+            cNumber.textContent = guessNumber;
+
+            function isGuessCorrect() {
+                if (guessFirstName == correctFirstName && guessLastName == correctLastName) {
+                  return true;
+                }  
+                return false;
+              }
+              
+              function isTeamCorrect() {
+                if (guessTeam == correctTeam) {
+                  return true;
+                }
+                return false;
+              }
+              
+              function isTeamClose() {
+                let asfc = ["ARI", "AUS", "HON", "NOL", "NYS", "OCO", "SJS"];
+                let nsfc = ["BAL", "BER", "CHI", "COL", "CTC", "SAR", "YKW"];
+                
+                if (asfc.includes(correctTeam)) {
+                  //correct team is in ASFC
+                  if (asfc.includes(guessTeam)) {
+                    return true;
+                  }
+                } else {
+                  //correct team is in NSFC
+                  if (nsfc.includes(guessTeam)) {
+                    return true;
+                  }
+                }
+                
+                return false;
+              }
+              
+              function isPosCorrect() {
+                if (guessPos == correctPos) {
+                  return true;
+                }
+                return false;
+              }
+              
+              function isPosClose() {
+                let off = ["QB", "RB", "WR", "TE", "OL", "T", "G", "C"];
+                let def = ["DE", "DT", "LB", "CB", "S"];
+                
+                if (off.includes(correctPos)) {
+                  //correct pos is offense
+                  if (off.includes(guessPos)) {
+                    return true;
+                  }
+                } else {
+                  //correct pos is defense
+                  if (def.includes(guessPos)) {
+                    return true;
+                  }
+                }
+                
+                return false;
+              }
+              
+              function isSeasonCorrect() {
+                if (guessSeason == correctSeason) {
+                  return true;
+                }
+                return false;
+              }
+              
+              function isSeasonClose() {
+                if (guessSeason > correctSeason) {
+                  return true;    
+                }
+                return false;
+              }
+
+              function isNumberCorrect() {
+                if (guessNumber == correctNumber) {
+                  return true;
+                }
+                return false;
+              }
+              
+              function isNumberClose() {
+                if (guessNumber > correctNumber) {
+                  return true;    
+                }
+                return false;
+              }
+
+            
+
+              if (isGuessCorrect()) {
+                //WIN
+                cName.classList.add("correct");
+                cTeam.classList.add("correct");
+                cPos.classList.add("correct");
+                cSeason.classList.add("correct");
+                cNumber.classList.add("correct");
+              } else {
+                //guess was INCORRECT
+                if (isTeamCorrect()) {
+                  cTeam.classList.add("correct");
+                } else if (isTeamClose()) {
+                  cTeam.classList.add("close");
+                }
+                
+                if (isPosCorrect()) {
+                  cPos.classList.add("correct");
+                } else if (isPosClose()) {
+                  cPos.classList.add("close");
+                }
+                if (isSeasonCorrect()) {
+                  cSeason.classList.add("correct");
+                } else if (isSeasonClose()) {
+                  cSeason.classList.add("close");
+                }
+                if (isNumberCorrect()) {
+                    cNumber.classList.add("correct");
+                } else if (isNumberClose()) {
+                    cNumber.classList.add("close");
+                }
+              } 
+                    // Increment the guess count
+            guessCount++;
+
+            // Display the updated guess count
+            document.getElementById("guesses").textContent = guessCount + " of 8 guesses";
+
+            if (guessCount === 8) {
+                const correctFullName = correctFirstName + " " + correctLastName;
+                if (confirm("You lost! The answer was " + correctFullName + ". Want to play again?")) {
+                  // Restart the page
+                  location.reload();
+                }
+              }
+
+            if (isGuessCorrect()) {
+            // WIN
+            cName.classList.add("correct");
+            cTeam.classList.add("correct");
+            cPos.classList.add("correct");
+            cSeason.classList.add("correct");
+            cNumber.classList.add("correct");
+
+            // Check if all cells have the "correct" class
+            if (
+                cName.classList.contains("correct") &&
+                cTeam.classList.contains("correct") &&
+                cPos.classList.contains("correct") &&
+                cSeason.classList.contains("correct") &&
+                cNumber.classList.contains("correct")
+            ) {
+                        const tries = guessCount; // Calculate the number of tries
+                if (confirm("You won in " + tries + " tries! Play again?")) {
+                // Restart the page
+            location.reload();
+        }
+      }
+            } else {
+            // guess was INCORRECT
+            }
+        });
+        });
+      
 
     optionSearch.addEventListener('keyup', function() {
       var filter, li, i, textValue;
@@ -109,15 +296,12 @@ optionList.forEach(function (optionListSingle, index) {
           li[i].style.display = 'none';
         }
       }
+
+    
     });
+
   });
   
-  
-  // var boxElements = document.querySelectorAll('[id$="1"], [id$="6"]');
-        // for (var i = 0; i < boxElements.length; i++) {
-        //     if (boxElements[i].textContent.trim() === '') {
-        //         boxElements[i].textContent = text;
-        //         boxElements[i].value = i;
-        //         break; // Exit the loop after updating the first available box
-        //     }
-        // }
+
+
+

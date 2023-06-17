@@ -269,3 +269,13 @@ th{
   .highlight-green {
     background-color: rgb(132, 188, 132);
   }
+  .hide{
+    display: none;
+  }
+  .close {
+    background-color: yellow;
+  }
+  
+  .correct {
+    background-color: green;
+  }
