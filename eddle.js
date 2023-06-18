@@ -164,7 +164,7 @@ document.addEventListener("DOMContentLoaded", function() {
               
               function isPosClose() {
                 let off = ["QB", "RB", "WR", "TE", "OL", "T", "G", "C", "FB"];
-                let def = ["DE", "DT", "LB", "CB", "S", "K"];
+                let def = ["DE", "DT", "LB", "CB", "SS", "FS","K"];
                 
                 if (off.includes(correctPos)) {
                   //correct pos is offense
