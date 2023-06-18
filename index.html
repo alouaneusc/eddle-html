@@ -1,513 +1,507 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalabale=1">
-        <title> Eddle</title>
-        <link rel="stylesheet" href="eddle.css">
-        <script src="eddle.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-csv/1.0.21/jquery.csv.min.js"></script>
-        <script type="text/csv" id="unparsed">
-            firstname,lastname,team,pos,season,number
-            Not,Edd,CHI,QB,42,0
-            Big,Edd,OCO,DT,22,99
-            Akaki,Akayre, ARI, LB, 36, 25
-            Amari,Springer, ARI, SS, 31, 84
-            Benjamin,Duvernay(R), ARI, CB, 41, 56
-            Benji,Aguilera(R), ARI, WR, 41, 3
-            Brian,Vincent-Vega(R), ARI, FS, 41, 27
-            Captain,BillyStinkwater, ARI, WR, 34, 89
-            Carissa,vanCampen(C), ARI, LB, 35, 10
-            D'Nickashaw,Mangoldson, ARI, T, 33, 66
-            Danny,Nedelko, ARI, RB, 37, 5
-            Dennis,Rodman, ARI, T, 36, 78
-            Donovan,Winters(R), ARI, QB, 41, 3
-            Emerson,Quinn, ARI, DT, 36, 82
-            Fortified,Fridge(C), ARI, C, 38, 99
-            Herc,Kirkby, ARI, TE, 32, 13
-            Ignatius,Reilly, ARI, LB, 36, 57
-            Jayme,JayneJay-Jaymison, ARI, K, 40, 4
-            Kotoni,Staggs, ARI, WR, 31, 18
-            Leonardo,McTurtle(C), ARI, LB, 33, 69
-            Louis,Blondin, ARI, WR, 34, 10
-            Mark,Goodhead, ARI, CB, 31, 14
-            NotSo,Smart, ARI, FS, 40, 20
-            Outlaw,ModeSicko, ARI, CB, 35, 32
-            Raphael,McTurtle, ARI, DT, 33, 96
-            Sherwin,BlueJr., ARI, RB, 38, 1
-            Sir,TyrellXah'Aarone, ARI, DT, 40, 85
-            Spottie,O'Dopaliscious, ARI, CB, 34, 3
-            Wendell,Sailor, ARI, QB, 31, 9
-            -,Geralt, AUS, FS, 39, 4
-            Brandon,Mason, AUS, T, 37, 99
-            Carly,RaeJensen, AUS, DT, 38, 1
-            Charlie,Brown, AUS, K, 39, 1
-            Delores,Bickerman, AUS, WR, 37, 18
-            Deshawn,Penne(C), AUS, TE, 32, 86
-            Draft,Steal, AUS, CB, 35, 96
-            Great,Khali, AUS, G, 41, 72
-            Howard,Coward, AUS, RB, 40, 17
-            Jean-Ralphio,Saperstein, AUS, DE, 36, 50
-            Jeff,Newman, AUS, RB, 38, 27
-            Jimmy,Holding, AUS, T, 36, 66
-            Joe,Smokes, AUS, LB, 33, 96
-            Joey,Din, AUS, DE, 34, 13
-            JR,Frankenstero, AUS, DE, 36, 42
-            Mario,Moloka'i, AUS, LB, 39, 93
-            Oliver,Tolliver, AUS, WR, 41, 17
-            Pegme,Amidala, AUS, TE, 40, 80
-            Queen,ElizabethII, AUS, QB, 35, 12
-            Raffaele,Tommasi, AUS, CB, 36, 64
-            Roma,Amir-Kani, AUS, SS, 36, 68
-            Ryan,Knock(R), AUS, LB, 41, 88
-            Spicy,Ron, AUS, LB, 32, 7
-            Tank,McGibbons, AUS, LB, 38, 54
-            Tobias,WorthingtonIII, AUS, SS, 32, 15
-            Zamir,KehlaJr.(C), AUS, CB, 36, 31
-            Zaphod,Beeblebrox, AUS, WR, 36, 42
-            Antoine,WinfieldJr., BAL, FS, 39, 31
-            Bengal,Tigerheart, BAL, T, 40, 69
-            Bourtol,Halcomsby, BAL, FS, 40, 12
-            Bruce,BuckleyJr., BAL, LB, 36, 51
-            Bubba,Chubb(R), BAL, C, 41, 88
-            Casino,Robin, BAL, DT, 38, 1
-            Ceti,Pyxis, BAL, RB, 36, 9
-            Charles,Chapman, BAL, CB, 36, 77
-            Dante,King, BAL, RB, 29, 43
-            Demarius,Cook(R), BAL, SS, 39, 37
-            Gucci,Gurley, BAL, RB, 39, 25
-            Jake,Williams, BAL, CB, 39, 44
-            Jay,Money, BAL, WR, 39, 3
-            Mabel,Pines, BAL, DE, 36, 8
-            MC,Hammer, BAL, DT, 39, 55
-            Mike,Makmur, BAL, K, 38, 7
-            Money,Tolliver, BAL, RB, 40, 10
-            Pasta,theTurtle, BAL, FS, 32, 54
-            Penger,Tolliver, BAL, TE, 40, 61
-            Preston,Beatz, BAL, QB, 37, 77
-            Rocky,Moreaux(C), BAL, WR, 37, 11
-            Shane,Turnbull, BAL, WR, 38, 81
-            Sledge,Hammer, BAL, LB, 38, 93
-            Titty,Juana, BAL, SS, 35, 69
-            Wälter,Gunther, BAL, LB, 40, 87
-            Yummy,HotDogPie, BAL, C, 37, 69
-            Armor,Queen, BER, RB, 38, 12
-            Burnt,Toast(R), BER, TE, 41, 33
-            Cape,ThePartyRhino, BER, RB, 40, 16
-            Charlie,Thorsen, BER, CB, 37, 16
-            Clint,Mustache, BER, DE, 40, 45
-            Diggs,Sideline-touchdown, BER, FS, 38, 27
-            Emile,Charles, BER, WR, 41, 25
-            Fred,Edison, BER, LB, 36, 54
-            GOAT,TANNK, BER, DE, 38, 35
-            Jordan,Hartline, BER, LB, 37, 84
-            Kevin,McThumper, BER, LB, 36, 52
-            Known,Acquaintance, BER, K, 37, 12
-            Laszlo,Forty-Two, BER, SS, 36, 42
-            Maximilian,Hamilton, BER, TE, 35, 94
-            Melvin,Harris, BER, G, 40, 99
-            Nathan,Meagher, BER, DT, 36, 90
-            Nick,Williams(R), BER, TE, 41, 87
-            Really,Creative-Name, BER, WR, 38, 1
-            Roque,Santa-Cruz, BER, QB, 36, 24
-            Tae,Dawson, BER, CB, 36, 7
-            Zayne,Dangle, BER, WR, 34, 55
-            Action,Bronson, CHI, DE, 41, 84
-            Apollo,Program, CHI, CB, 39, 24
-            Austin,Morley, CHI, WR, 36, 33
-            Bill,Cravy, CHI, CB, 41, 45
-            Brian,Duke, CHI, LB, 38, 55
-            David,Doug, CHI, K, 38, 5
-            Dee,Walt, CHI, FS, 30, 38
-            Frank,Dux(C), CHI, RB, 39, 27
-            Franklin,Turtle, CHI, DT, 32, 78
-            Heiiajs,D.Owidhuse(R), CHI, CB, 42, 23
-            Jimmy,Ryder, CHI, WR, 40, 9
-            Joseph,Reed(C), CHI, DT, 36, 96
-            Lalu,MuhammadZohri, CHI, RB, 32, 13
-            Monty,Ward, CHI, LB, 37, 66
-            Painted,Penguin, CHI, QB, 38, 9
-            Plant,Based, CHI, WR, 39, 3
-            Quendyn,Quarterstorm, CHI, CB, 36, 26
-            Rico,Savage, CHI, FS, 41, 10
-            Rumble,Ronson, CHI, LB, 34, 22
-            Theo,AwardsSystemIsBad, CHI, C, 32, 14
-            Walter,McKinley, CHI, TE, 36, 49
-            Xavier,Valorian, CHI, DE, 36, 85
-            -,Cross-Eriksen, COL, FS, 34, 27
-            Aidan,HutchinsonJr., COL, DE, 38, 97
-            Aleksandar,Kovic(R), COL, LB, 42, 91
-            Anthony,Stark, COL, CB, 35, 85
-            Bong,Stevens, COL, TE, 38, 41
-            Bud,R.Fingers, COL, WR, 33, 3
-            Cedric,WilkinsII(C), COL, CB, 31, 5
-            Cob,Corning, COL, CB, 35, 77
-            Eeeeeeee,phenssta, COL, WR, 35, 29
-            Grayson,Yates, COL, LB, 37, 98
-            Inspector,Gadget, COL, FS, 37, 45
-            Live,Laughlove, COL, QB, 32, 15
-            Malik,Brooks(R), COL, RB, 41, 8
-            Marvin,Toledo, COL, RB, 33, 15
-            Mister,Hogmally, COL, TE, 36, 43
-            Nathan,Explosion, COL, DE, 34, 66
-            NCADV,RAINN(C), COL, WR, 39, 42
-            Orlando,Doom, COL, K, 36, 66
-            Patty,Pumpernickel, COL, DT, 35, 50
-            Remi,Musgrave-Smythe, COL, T, 38, 49
-            Savathûn,T.Witchqueen, COL, DT, 37, 3
-            Stryker,Brown, COL, DE, 37, 44
-            Waylen,Greene, COL, LB, 39, 65
-            Wolfie,McDummyJr.(R), COL, QB, 41, 32
-            Aleksandr,Milescu, CTC, FS, 36, 27
-            American,Boot, CTC, TE, 35, 2
-            Art,Deco, CTC, CB, 35, 20
-            Bageshwari,Singh, CTC, CB, 34, 11
-            Barry,Badman, CTC, LB, 35, 22
-            Bob,Kickerson(R), CTC, K, 41, 1
-            Christian,Marciano(C), CTC, DT, 33, 9
-            Craig,Brand, CTC, LB, 41, 82
-            Creg,JerrithIV, CTC, QB, 37, 20
-            Derrick,Prince, CTC, WR, 36, 16
-            Doc,Fireball, CTC, LB, 32, 72
-            Eric,Belmont, CTC, CB, 38, 29
-            Erwin,Kemp, CTC, WR, 34, 81
-            Haloick,Oasis, CTC, LB, 38, 32
-            Jarvis,Harbinger-Marjin(C), CTC, RB, 36, 49
-            Jason,Steele, CTC, DT, 41, 47
-            Jasper,Fontaine, CTC, FS, 36, 44
-            Justin,Willis(R), CTC, T, 41, 71
-            Kairo,Knight, CTC, WR, 40, 18
-            Legs,McMillion(R), CTC, CB, 41, 13
-            Mike,Ehrmantraut(R), CTC, WR, 40, 73
-            Nakiri,Ayame, CTC, RB, 40, 66
-            Patrick,Cunningham, CTC, K, 36, 40
-            Pilot,RedSun, CTC, G, 35, 64
-            Rolud,Onyxgut(R), CTC, LB, 41, 74
-            Ryan,Lawrence, CTC, DE, 40, 93
-            Swantavius,Payne, CTC, T, 35, 55
-            Udo,EBeaty, CTC, DE, 36, 44
-            Able,Archer, FA, DE, 33, 85
-            Bastian,Weichselbraun(R), FA, TE, 40, 45
-            Bender,Rodriguez, FA, LB, 28, 55
-            Boone,McCoy, FA, DE, 34, 17
-            Calvin,Hobbes, FA, CB, 30, 16
-            Carter,Knight, FA, QB, 31, 11
-            Cornelius,KingIII, FA, WR, 37, 11
-            DeAndre,King, FA, RB, 33, 20
-            Dexter,Hall(C), FA, LB, 28, 54
-            Dominos,Pizzaman, FA, LB, 30, 77
-            Dragazor,Blaze, FA, CB, 34, 21
-            Escanor,Sama, FA, WR, 32, 81
-            Guy,Gibson, FA, CB, 29, 43
-            Ikick,Ballz, FA, K, 31, 69
-            Jack,McPherson, FA, LB, 35, 97
-            Jason,Garciaparra, FA, DE, 30, 9
-            Jason,Waterfalls, FA, LB, 30, 29
-            John,Riggins, FA, RB, 32, 44
-            Johnny,Patey, FA, WR, 31, 11
-            Jonathan,Altidor, FA, CB, 35, 1
-            LaDamien,Beck, FA, LB, 32, 21
-            Lennay,Kekua, FA, DT, 31, 65
-            Levy,Tate, FA, K, 30, 2
-            Malcolm,Savage(C), FA, QB, 31, 5
-            Nacho,MachoMan, FA, TE, 34, 88
-            Rean,Schwarzer, FA, FS, 29, 42
-            Rex,Crenshaw, FA, TE, 30, 69
-            Richard,Harden, FA, TE, 36, 12
-            Rocco,Blade, FA, DE, 30, 57
-            Rodka,Raskolnikov, FA, WR, 31, 86
-            Ryan,Murray, FA, SS, 37, 20
-            Sakeem,Webb, FA, LB, 31, 1
-            Stumpy,Jones(C), FA, T, 28, 35
-            Swantavius,Torch, FA, WR, 35, 23
-            Talen,Farrens, FA, SS, 33, 15
-            The,IncredibleBulk, FA, FB, 35, 80
-            Triple,Option, FA, FB, 35, 33
-            Vincent,SharpeiJr.(C), FA, WR, 30, 17
-            William,Groves, FA, FB, 33, 22
-            Zavier,Perkins, FA, LB, 38, 8
-            Alita,BattleAngel, HON, FS, 40, 99
-            Bean,DelphineJr., HON, RB, 36, 28
-            Billy,Jor-El, HON, CB, 41, 92
-            Bridge,Burner(C), HON, LB, 38, 54
-            Caleb,Hayden, HON, LB, 38, 7
-            Florida,Man, HON, WR, 40, 89
-            Henry,Oswald-Newman, HON, RB, 38, 7
-            Jason,Oexius, HON, CB, 37, 27
-            Leek,Mai-Heinous, HON, WR, 35, 19
-            Lenny,'Extra'Longpipe, HON, DE, 40, 95
-            Liath,Squirrel, HON, LB, 41, 52
-            Liv,Elsathelookout, HON, DE, 40, 88
-            Luigi,Lanikai, HON, CB, 39, 32
-            Matthew,Fryars(R), HON, SS, 40, 31
-            Maxwell,JacobFriedman, HON, LB, 39, 55
-            Nova,Montagne, HON, QB, 37, 21
-            Octavio,Pérez, HON, WR, 36, 37
-            Ray,Baker(C), HON, K, 41, 3
-            Raya,Ho'opa'i, HON, G, 40, 72
-            Sailor,Moon(R), HON, RB, 42, 45
-            Seth,Leavitt(C), HON, CB, 39, 44
-            Theo,Lariat, HON, CB, 34, 64
-            Tom,Taylor, HON, FS, 34, 11
-            Trent,Silverback(R), HON, C, 41, 13
-            Waluigi,Gronkowski, HON, TE, 35, 69
-            -,Ganyu, NOLA, LB, 34, 5
-            Adam,Rage, NOLA, CB, 37, 10
-            Alfonso,DosSantos, NOLA, K, 35, 33
-            Beniri,T'Chawama, NOLA, T, 31, 35
-            Blibby,Shpoopy, NOLA, RB, 37, 11
-            Bruce,White, NOLA, DE, 41, 94
-            Chim,Rickles, NOLA, FS, 34, 75
-            Dallas,Fort-Worth, NOLA, C, 32, 68
-            De'Aaron,HarperII, NOLA, CB, 32, 23
-            Dick,Grayson, NOLA, WR, 39, 88
-            Dino,Nuggets(R), NOLA, CB, 42, 7
-            Effoff,IamYeti, NOLA, DT, 36, 69
-            Elessar,Jones(C), NOLA, QB, 34, 7
-            Ezra,Azazel, NOLA, CB, 41, 25
-            Franz-Udo,Culman-Kaiser, NOLA, T, 34, 42
-            Hank,Mardukas(R), NOLA, TE, 42, 33
-            Honey,Humphries(R), NOLA, SS, 42, 6
-            IsHe...,ReallyInvisible, NOLA, T, 28, 6
-            James,Batista(R), NOLA, DE, 40, 99
-            Jay,CueJr., NOLA, RB, 29, 10
-            Johnny,Delusional, NOLA, CB, 35, 21
-            Keanu,Calhoun(R), NOLA, WR, 42, 17
-            Kyle,Crane(R), NOLA, RB, 41, 22
-            Lukas,vanNess, NOLA, LB, 41, 91
-            Morpheus,Czargyros, NOLA, DE, 31, 99
-            Orpheus,Czargyros, NOLA, FS, 31, 44
-            PeePee,Poop-EaterSr., NOLA, WR, 36, 8
-            Rab,Thecrab, NOLA, RB, 35, 28
-            Rodney,Rosadino, NOLA, LB, 41, 93
-            Ryan,Murray, NOLA, SS, 37, 20
-            Sheriff,Woody, NOLA, LB, 30, 5
-            Shucks,McShuckle(R), NOLA, T, 42, 74
-            Solace,Avenger, NOLA, LB, 34, 22
-            The,Stig, NOLA, CB, 33, 9
-            Ttollem,Mada, NOLA, WR, 35, 53
-            Turt,Golum, NOLA, TE, 36, 17
-            -,TheRiddler, NYS, CB, 41, 99
-            Aikeek,Dafootbawl, NYS, LB, 35, 6
-            Anthony,SimmonsII, NYS, TE, 40, 80
-            Arnie,Rufus, NYS, DE, 32, 95
-            Bay,Webb, NYS, LB, 37, 43
-            Blaine,Falco, NYS, QB, 39, 16
-            Bonzi,Buddy, NYS, CB, 36, 99
-            Brock,LandersJr., NYS, CB, 37, 12
-            Dax,Dangerfield(C), NYS, CB, 33, 11
-            Donatello,McTurtle, NYS, G, 35, 72
-            Donte,Darius, NYS, LB, 39, 9
-            Dub,Redd, NYS, DT, 41, 83
-            Ian,ColeIII, NYS, K, 34, 6
-            Kaiden,King, NYS, SS, 36, 27
-            Lenny,LyonsJr.(R), NYS, DE, 39, 99
-            Lionel,Scrimmage, NYS, DT, 40, 91
-            Loose,Cannon, NYS, SS, 41, 2
-            Mandrews,McHollywood, NYS, WR, 36, 12
-            Matthew,Mara, NYS, WR, 37, 13
-            Michael,Touchback, NYS, RB, 37, 9
-            Michaelangelo,McTurtle(C), NYS, RB, 34, 92
-            Pan,Cakes, NYS, T, 36, 70
-            Regina,Ferraro, NYS, FS, 35, 47
-            Sean,Robinson, NYS, WR, 41, 18
-            Sexy,Wilfork, NYS, DT, 36, 3
-            Siegmeyer,OfCatarina, NYS, TE, 38, 47
-            Teemo,Swift, NYS, LB, 36, 22
-            Wing,Wang(R), NYS, K, 42, 13
-            Aaron,Jäger(R), OCO, TE, 42, 5
-            Ace,McAlister, OCO, CB, 35, 1
-            Adrian,St.Christmas, OCO, QB, 37, 4
-            Ben,Goodwood, OCO, RB, 38, 50
-            Big,McLargeHuge(C), OCO, TE, 40, 42
-            Good,Player, OCO, DE, 39, 77
-            Iosefa,Fuamatu-Ma'afala, OCO, DE, 40, 7
-            Jamdrian,LeBayers, OCO, CB, 40, 5
-            Jeremy,CrouseJr., OCO, K, 36, 4
-            John,StarkVIII(C), OCO, LB, 41, 32
-            Johnson,Lovehammer, OCO, DT, 39, 91
-            Kaguya,Shinomiya, OCO, FS, 33, 17
-            Kyzir,Washington, OCO, SS, 35, 1
-            Leandre,Diarra, OCO, RB, 36, 45
-            Mathias,Mayhem, OCO, LB, 40, 12
-            Molki,Koivu, OCO, TE, 33, 86
-            Sim,Sunigh, OCO, LB, 39, 56
-            Smokin,Jay, OCO, SS, 39, 6
-            So-Much,Jazz, OCO, LB, 35, 20
-            Teenie,Hodges, OCO, WR, 38, 24
-            Thomas,Robinson, OCO, WR, 36, 21
-            twerky,Dingleberry, OCO, DT, 38, 19
-            Tyler,One, OCO, RB, 40, 1
-            Walrus,Jones, OCO, T, 38, 44
-            Zane,Cold, OCO, RB, 33, 4
-            Aqeel,Steele, SAR, LB, 36, 99
-            Artemis,Entreri, SAR, WR, 41, 27
-            Damarcus,Cole, SAR, DT, 41, 62
-            Dane,JohnsonJr., SAR, T, 34, 73
-            Dip,Dhillon, SAR, CB, 37, 8
-            dont,draft, SAR, LB, 30, 42
-            Eilliot,Berry, SAR, RB, 41, 4
-            Fronky,Fresh, SAR, LB, 40, 23
-            Ginand,Toxic, SAR, DE, 40, 9
-            Harley,Andrews, SAR, CB, 36, 99
-            Johnny,BlazeJr., SAR, WR, 38, 81
-            Justin,Cloud, SAR, LB, 36, 13
-            King,Zeus, SAR, CB, 33, 1
-            Lucius,Salem, SAR, TE, 34, 66
-            Max,Honestly(R), SAR, LB, 41, 60
-            Mistah,Freddy, SAR, DT, 35, 96
-            Mrs,StacksMcHits, SAR, DE, 32, 62
-            Nick,KaepercolinJr., SAR, WR, 31, 41
-            Pete,Zuh, SAR, RB, 36, 5
-            Rocky,Rhoads, SAR, SS, 32, 88
-            Spike,Daniels(C), SAR, FS, 31, 47
-            Swantavius,King, SAR, K, 35, 7
-            Troy,Barnes, SAR, C, 32, 5
-            Willier,Miller(C), SAR, QB, 39, 2
-            Alex,Armstrong(C), SJS, DE, 40, 30
-            Blacksmith,Andre(R), SJS, C, 42, 60
-            Booter,McGavin(C), SJS, K, 38, 19
-            Brooks,Piggott, SJS, CB, 39, 29
-            C.G,Breezy, SJS, RB, 36, 2
-            Cruella,deVille, SJS, LB, 38, 48
-            DJ,Maclean(R), SJS, LB, 41, 55
-            Fat,Jack, SJS, DT, 36, 99
-            Graham,Harper, SJS, CB, 36, 24
-            Ioe,Torrent, SJS, LB, 30, 44
-            Ja’uan,Holland, SJS, SS, 36, 15
-            Jaycee,Higgins, SJS, WR, 31, 18
-            Jumbo,Edward(R), SJS, DT, 41, 97
-            Kenny,McCormick, SJS, LB, 39, 88
-            Kenny,Szymborski(R), SJS, TE, 41, 86
-            Larry,Jenkins, SJS, C, 34, 69
-            Lord,Farquaads, SJS, RB, 40, 87
-            Mike,Scott, SJS, DE, 36, 84
-            Nick,Flint, SJS, LB, 33, 13
-            Otto,TheOrange, SJS, TE, 41, 44
-            Owen,Farrell, SJS, QB, 35, 1
-            Ozamataz,Buckshank, SJS, RB, 34, 6
-            President,Camacho, SJS, WR, 33, 36
-            Russet,Buster, SJS, FS, 34, 93
-            Sconnie,McSix, SJS, WR, 36, 19
-            Will,Nightingale, SJS, CB, 36, 55
-            Absolute,Unit, YKW, QB, 36, 99
-            Adebayo,Akinfenwa, YKW, RB, 35, 10
-            Bernd,DBrot, YKW, WR, 32, 13
-            Branden,Rojas(R), YKW, WR, 39, 18
-            Calvin,Spiff, YKW, WR, 35, 10
-            Daron,Arnold, YKW, DE, 34, 99
-            Detective,Crashmore, YKW, TE, 40, 80
-            Double,Doink, YKW, K, 33, 88
-            Dusty,Wilson(C), YKW, T, 37, 76
-            Gore,DoneRamSay, YKW, SS, 38, 6
-            J.T.,Kurbis, YKW, T, 36, 88
-            Jay,Spears, YKW, SS, 31, 5
-            Kadarius,ClaypoolII(C), YKW, CB, 41, 24
-            Kahn,Cussion, YKW, LB, 33, 54
-            Kalam,Mekhar, YKW, CB, 32, 7
-            Kumquat,Archipelago, YKW, RB, 35, 34
-            Mo,Gago, YKW, DT, 39, 92
-            Sam,Sung, YKW, FS, 34, 36
-            Simon,TheFrog, YKW, CB, 34, 15
-            Teddy,Rhinoback, YKW, DT, 38, 71
-            Terry,Johnson(R), YKW, LB, 41, 41
-            Terry,Johnson(R), YKW, LB, 41, 41
-            Toad,Wananapaoa, YKW, LB, 40, 87
-            Zephyr,Greywolf, YKW, LB, 32, 23
-        </script>
-        </script>
-    </head>
-    <body>
-        <div class="header" >
-            <div class="left-section">
-                <form class="info-icon" name="" method="" action="">
-                  <input name="info-icon" type="image" src="images/info-icon.png" height="60px" onclick="showPopup('info-popup'); event.preventDefault();">
-                </form>
-                <form class="isfl-logo" name="" method="" action="">
-                  <input name="isfl-logo" type="image" src="images/ISFLlogo.png" height="50px" onclick="showPopup('isfl-popup'); event.preventDefault();">
-                </form>
-                <div class="popup" id="info-popup">
-                  <div class="overlay" onclick="hidePopup('info-popup')"></div>
-                  <div class="content">
-                    <div class="close-btn" onclick="hidePopup('info-popup')">&times;</div>
-                    <h1>How to Play</h1>
-                    <p>Guess the ISFL player in as few tries as possible <br>
-                        After each guess, the color of the tiles will change depending on how close your guess was to the player<br>
-                        In any column,  <span class="highlight-green">green</span>  represents a match<br>
-                        <span class="highlight">Yellow</span> varies: For position <span class="highlight">yellow</span> indicates correct side of the ball. <br>
-                        For conference, <span class="highlight">yellow</span> indicates correct conference. <br>
-                        For number and season, <span class="highlight">yellow</span> means your guess was too high.<br>
-                    </p>
-                  </div>
-                </div>
-              
-                <div class="popup" id="isfl-popup">
-                  <div class="overlay" onclick="hidePopup('isfl-popup')"></div>
-                  <div class="content">
-                    <div class="close-btn" onclick="hidePopup('isfl-popup')">&times;</div>
-                    <h1>ISFL</h1>
-                    <p><strong>ASFC:</strong> HON, ARI, OCO, AUS, NYS, SJS, NOLA <br>
-                        <strong>NSFC:</strong> CTC, YKW, SAR, CHI, BAL, COL, BER</p>
-                  </div>
-                </div>
-              </div>
-              <script>
-                function showPopup(popupId) {
-                  document.getElementById(popupId).classList.add('active');
-                }
-              
-                function hidePopup(popupId) {
-                  document.getElementById(popupId).classList.remove('active');
-                }
-              </script>
-            <div class="middle-section"></div>
-            <div class="right-section">
-                <a href="https://github.com/alouaneusc/eddle-html" target="_blank"><img class="github-icon" src="images/snorlaxglasses.png"></a>
-            </div>
-        </div>
-        <div class="eddle" >
-            <div>
-                Eddle
-            </div>
-        </div>
-        <div class="description-title" >
-            <div>
-                ISFL PLAYER GUESSING GAME
-            </div>
-        </div>
-        <div class="guesses" id="guesses">
-            0 of 10 guesses
-        </div>
 
-        <div class="container">
-            <div class="select-box" >
-                <div class="select-option" >
-                        <input type="text" placeholder="Enter a name" id="soValue" readonly name="">
-                </div>
-                <div class="content" >
-                    <div class="search">
-                        <input type="text" id="optionSearch" placeholder="Search" name="">
-                    </div>
-                    <ul class="options" id="options">
-                    </ul>
-                </div>
-            </div>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalabale=1">
+  <title> Eddle</title>
+  <link rel="stylesheet" href="eddle.css">
+  <script src="eddle.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-csv/1.0.21/jquery.csv.min.js"></script>
+  <script type="text/csv" id="unparsed">
+    firstname,lastname,team,pos,season,number
+    Known,Acquaintance,BER,K,37,12
+    Benji,Aguilera,ARI,WR,41,3
+    Akaki,Akayre,ARI,LB,36,25
+    Adebayo,Akinfenwa,YKW,RB,35,10
+    Jonathan,Altidor,FA,CB,35,1
+    Pegme,Amidala,AUS,TE,40,80
+    Roma,Amir-Kani,AUS,SS,36,68
+    Blacksmith,Andre,SJS,C,42,60
+    Harley,Andrews,SAR,CB,36,99
+    Able,Archer,FA,DE,33,85
+    Kumquat,Archipelago,YKW,RB,35,34
+    Alex,Armstrong,SJS,DE,40,30
+    Daron,Arnold,YKW,DE,34,99
+    Solace,Avenger,NOLA,LB,34,22
+    Theo,AwardsSystemIsBad,CHI,C,32,14
+    Nakiri,Ayame,CTC,RB,40,66
+    Ezra,Azazel,NOLA,CB,41,25
+    Barry,Badman,CTC,LB,35,22
+    Ray,Baker,HON,K,41,3
+    Ikick,Ballz,FA,K,31,69
+    Troy,Barnes,SAR,C,32,5
+    Plant,Based,CHI,WR,39,3
+    James,Batista,NOLA,DE,40,99
+    Alita,Battle Angel,HON,FS,40,99
+    Udo E,Beaty,CTC,DE,36,44
+    Preston,Beatz,BAL,QB,37,77
+    LaDamien,Beck,FA,LB,32,21
+    Zaphod,Beeblebrox,AUS,WR,36,42
+    Eric,Belmont,CTC,CB,38,29
+    Eilliot,Berry,SAR,RB,41,4
+    Delores,Bickerman,AUS,WR,37,18
+    Rocco,Blade,FA,DE,30,57
+    Dragazor,Blaze,FA,CB,34,21
+    Johnny,Blaze Jr,SAR,WR,38,81
+    Louis,Blondin,ARI,WR,34,10
+    Sherwin,Blue Jr,ARI,RB,38,1
+    American,Boot,CTC,TE,35,2
+    Craig,Brand,CTC,LB,41,82
+    CG,Breezy,SJS,RB,36,2
+    Action,Bronson,CHI,DE,41,84
+    Malik,Brooks,COL,RB,41,8
+    Bernd D,Brot,YKW,WR,32,13
+    Charlie,Brown,AUS,K,39,1
+    Stryker,Brown,COL,DE,37,44
+    Bruce,Buckley Jr,BAL,LB,36,51
+    Ozamataz,Buckshank,SJS,RB,34,6
+    Bonzi,Buddy,NYS,CB,36,99
+    The Incredible,Bulk,FA,FB,35,80
+    Bridge,Burner,HON,LB,38,54
+    Russet,Buster,SJS,FS,34,93
+    Pan,Cakes,NYS,T,36,70
+    Keanu,Calhoun,NOLA,WR,42,17
+    President,Camacho,SJS,WR,33,36
+    Loose,Cannon,NYS,SS,41,2
+    Charles,Chapman,BAL,CB,36,77
+    Emile,Charles,BER,WR,41,25
+    Bubba,Chubb,BAL,C,41,88
+    Kadarius,Claypool II,YKW,CB,41,24
+    Justin,Cloud,SAR,LB,36,13
+    Zane,Cold,OCO,RB,33,4
+    Damarcus,Cole,SAR,DT,41,62
+    Ian,Cole III,NYS,K,34,6
+    Demarius,Cook,BAL,SS,39,37
+    Cob,Corning,COL,CB,35,77
+    Howard,Coward,AUS,RB,40,17
+    Kyle,Crane,NOLA,RB,41,22
+    Detective,Crashmore,YKW,TE,40,80
+    Bill,Cravy,CHI,CB,41,45
+    Really,Creative-Name,BER,WR,38,1
+    Rex,Crenshaw,FA,TE,30,69
+    -,Cross-Eriksen,COL,FS,34,27
+    Jeremy,Crouse Jr,OCO,K,36,4
+    Jay,Cue Jr,NOLA,RB,29,10
+    Franz-Udo,Culman-Kaiser,NOLA,T,34,42
+    Patrick,Cunningham,CTC,K,36,40
+    Kahn,Cussion,YKW,LB,33,54
+    Morpheus,Czargyros,NOLA,DE,31,99
+    Orpheus,Czargyros,NOLA,FS,31,44
+    Aikeek,Dafootbawl,NYS,LB,35,6
+    Dax,Dangerfield,NYS,CB,33,11
+    Zayne,Dangle,BER,WR,34,55
+    Spike,Daniels,SAR,FS,31,47
+    Donte,Darius,NYS,LB,39,9
+    Tae,Dawson,BER,CB,36,7
+    Cruella,de Ville,SJS,LB,38,48
+    Art,Deco,CTC,CB,35,20
+    Bean,Delphine Jr,HON,RB,36,28
+    Johnny,Delusional,NOLA,CB,35,21
+    Dip,Dhillon,SAR,CB,37,8
+    Leandre,Diarra,OCO,RB,36,45
+    Joey,Din,AUS,DE,34,13
+    twerky,Dingleberry,OCO,DT,38,19
+    Double,Doink,YKW,K,33,88
+    Orlando,Doom,COL,K,36,66
+    Alfonso,Dos Santos,NOLA,K,35,33
+    David,Doug,CHI,K,38,5
+    dont,draft,SAR,LB,30,42
+    Brian,Duke,CHI,LB,38,55
+    Benjamin,Duvernay,ARI,CB,41,56
+    Frank,Dux,CHI,RB,39,27
+    Fred,Edison,BER,LB,36,54
+    Jumbo,Edward,SJS,DT,41,97
+    Mike,Ehrmantraut,CTC,WR,40,73
+    Queen,Elizabeth II,AUS,QB,35,12
+    Liv,Elsathelookout,HON,DE,40,88
+    Artemis,Entreri,SAR,WR,41,27
+    Nathan,Explosion,COL,DE,34,66
+    Blaine,Falco,NYS,QB,39,16
+    Lord,Farquaads,SJS,RB,40,87
+    Owen,Farrell,SJS,QB,35,1
+    Talen,Farrens,FA,SS,33,15
+    Regina,Ferraro,NYS,FS,35,47
+    Bud R,Fingers,COL,WR,33,3
+    Doc,Fireball,CTC,LB,32,72
+    Nick,Flint,SJS,LB,33,13
+    Jasper,Fontaine,CTC,FS,36,44
+    Dallas,Fort-Worth,NOLA,C,32,68
+    Laszlo,Forty-Two,BER,SS,36,42
+    JR,Frankenstero,AUS,DE,36,42
+    Mistah,Freddy,SAR,DT,35,96
+    Fronky,Fresh,SAR,LB,40,23
+    Fortified,Fridge,ARI,C,38,99
+    Maxwell Jacob,Friedman,HON,LB,39,55
+    Matthew,Fryars,HON,SS,40,31
+    Iosefa,Fuamatu-Maafala,OCO,DE,40,7
+    Inspector,Gadget,COL,FS,37,45
+    Mo,Gago,YKW,DT,39,92
+    -,Ganyu,NOLA,LB,34,5
+    Jason,Garciaparra,FA,DE,30,9
+    -,Geralt,AUS,FS,39,4
+    Guy,Gibson,FA,CB,29,43
+    Turt,Golum,NOLA,TE,36,17
+    Mark,Goodhead,ARI,CB,31,14
+    Ben,Goodwood,OCO,RB,38,50
+    Dick,Grayson,NOLA,WR,39,88
+    Waylen,Greene,COL,LB,39,65
+    Zephyr,Greywolf,YKW,LB,32,23
+    Waluigi,Gronkowski,HON,TE,35,69
+    William,Groves,FA,FB,33,22
+    Wälter,Gunther,BAL,LB,40,87
+    Gucci,Gurley,BAL,RB,39,25
+    Bourtol,Halcomsby,BAL,FS,40,12
+    Dexter,Hall,FA,LB,28,54
+    Maximilian,Hamilton,BER,TE,35,94
+    Sledge,Hammer,BAL,LB,38,93
+    MC,Hammer,BAL,DT,39,55
+    Jarvis,Harbinger-Marjin,CTC,RB,36,49
+    Richard,Harden,FA,TE,36,12
+    Graham,Harper,SJS,CB,36,24
+    DeAaron,Harper II,NOLA,CB,32,23
+    Melvin,Harris,BER,G,40,99
+    Jordan,Hartline,BER,LB,37,84
+    Caleb,Hayden,HON,LB,38,7
+    Jaycee,Higgins,SJS,WR,31,18
+    Calvin,Hobbes,FA,CB,30,16
+    Teenie,Hodges,OCO,WR,38,24
+    Mister,Hogmally,COL,TE,36,43
+    Jimmy,Holding,AUS,T,36,66
+    Ja’uan,Holland,SJS,SS,36,15
+    Max,Honestly,SAR,LB,41,60
+    Raya,Hoopai,HON,G,40,72
+    Yummy,HotDogPie,BAL,C,37,69
+    Honey,Humphries,NOLA,SS,42,6
+    Aidan,Hutchinson Jr,COL,DE,38,97
+    Effoff,IamYeti,NOLA,DT,36,69
+    Fat,Jack,SJS,DT,36,99
+    Aaron,Jäger,OCO,TE,42,5
+    Smokin,Jay,OCO,SS,39,6
+    Jayme Jayne,Jay-Jaymison,ARI,K,40,4
+    So-Much,Jazz,OCO,LB,35,20
+    Larry,Jenkins,SJS,C,34,69
+    Creg,Jerrith IV,CTC,QB,37,20
+    Terry,Johnson,YKW,LB,41,41
+    Terry,Johnson,YKW,LB,41,41
+    Dane,Johnson Jr,SAR,T,34,73
+    Stumpy,Jones,FA,T,28,35
+    Elessar,Jones,NOLA,QB,34,7
+    Walrus,Jones,OCO,T,38,44
+    Billy,Jor-El,HON,CB,41,92
+    Titty,Juana,BAL,SS,35,69
+    Nick,Kaepercolin Jr,SAR,WR,31,41
+    Zamir,Kehla Jr,AUS,CB,36,31
+    Lennay,Kekua,FA,DT,31,65
+    Erwin,Kemp,CTC,WR,34,81
+    Great,Khali,AUS,G,41,72
+    Bob,Kickerson,CTC,K,41,1
+    Dante,King,BAL,RB,29,43
+    DeAndre,King,FA,RB,33,20
+    Kaiden,King,NYS,SS,36,27
+    Swantavius,King,SAR,K,35,7
+    Cornelius,King III,FA,WR,37,11
+    Herc,Kirkby,ARI,TE,32,13
+    Kairo,Knight,CTC,WR,40,18
+    Carter,Knight,FA,QB,31,11
+    Ryan,Knock,AUS,LB,41,88
+    Molki,Koivu,OCO,TE,33,86
+    Aleksandar,Kovic,COL,LB,42,91
+    JT,Kurbis,YKW,T,36,88
+    Brock,Landers Jr,NYS,CB,37,12
+    Luigi,Lanikai,HON,CB,39,32
+    Theo,Lariat,HON,CB,34,64
+    Live,Laughlove,COL,QB,32,15
+    Ryan,Lawrence,CTC,DE,40,93
+    Seth,Leavitt,HON,CB,39,44
+    Jamdrian,LeBayers,OCO,CB,40,5
+    Lenny Extra,Longpipe,HON,DE,40,95
+    Johnson,Lovehammer,OCO,DT,39,91
+    Lenny,Lyons Jr,NYS,DE,39,99
+    Nacho,Macho Man,FA,TE,34,88
+    DJ,Maclean,SJS,LB,41,55
+    Ttollem,Mada,NOLA,WR,35,53
+    Leek,Mai-Heinous,HON,WR,35,19
+    Mike,Makmur,BAL,K,38,7
+    Florida,Man,HON,WR,40,89
+    DNickashaw,Mangoldson,ARI,T,33,66
+    Matthew,Mara,NYS,WR,37,13
+    Christian,Marciano,CTC,DT,33,9
+    Hank,Mardukas,NOLA,TE,42,33
+    Brandon,Mason,AUS,T,37,99
+    Mathias,Mayhem,OCO,LB,40,12
+    Ace,McAlister,OCO,CB,35,1
+    Kenny,McCormick,SJS,LB,39,88
+    Boone,McCoy,FA,DE,34,17
+    Wolfie,McDummy Jr,COL,QB,41,32
+    Booter,McGavin,SJS,K,38,19
+    Tank,McGibbons,AUS,LB,38,54
+    Mandrews,McHollywood,NYS,WR,36,12
+    Walter,McKinley,CHI,TE,36,49
+    Big,McLarge Huge,OCO,TE,40,42
+    Legs,McMillion,CTC,CB,41,13
+    Jack,McPherson,FA,LB,35,97
+    Shucks,McShuckle,NOLA,T,42,74
+    Sconnie,McSix,SJS,WR,36,19
+    Kevin,McThumper,BER,LB,36,52
+    Raphael,McTurtle,ARI,DT,33,96
+    Leonardo,McTurtle,ARI,LB,33,69
+    Michaelangelo,McTurtle,NYS,RB,34,92
+    Donatello,McTurtle,NYS,G,35,72
+    Nathan,Meagher,BER,DT,36,90
+    Kalam,Mekhar,YKW,CB,32,7
+    Aleksandr,Milescu,CTC,FS,36,27
+    Willier,Miller,SAR,QB,39,2
+    Mario,Molokai,AUS,LB,39,93
+    Jay,Money,BAL,WR,39,3
+    Nova,Montagne,HON,QB,37,21
+    Sailor,Moon,HON,RB,42,45
+    Rocky,Moreaux,BAL,WR,37,11
+    Austin,Morley,CHI,WR,36,33
+    Ryan,Murray,FA,SS,37,20
+    Ryan,Murray,NOLA,SS,37,20
+    Remi,Musgrave-Smythe,COL,T,38,49
+    Clint,Mustache,BER,DE,40,45
+    Danny,Nedelko,ARI,RB,37,5
+    Jeff,Newman,AUS,RB,38,27
+    Will,Nightingale,SJS,CB,36,55
+    Dino,Nuggets,NOLA,CB,42,7
+    Haloick,Oasis,CTC,LB,38,32
+    Spottie,ODopaliscious,ARI,CB,34,3
+    Jason,Oexius,HON,CB,37,27
+    Siegmeyer,OfCatarina,NYS,TE,38,47
+    Tyler,One,OCO,RB,40,1
+    Rolud,Onyxgut,CTC,LB,41,74
+    Triple,Option,FA,FB,35,33
+    Henry,Oswald-Newman,HON,RB,38,7
+    Heiiajs D,Owidhuse,CHI,CB,42,23
+    Johnny,Patey,FA,WR,31,11
+    Swantavius,Payne,CTC,T,35,55
+    Painted,Penguin,CHI,QB,38,9
+    Deshawn,Penne,AUS,TE,32,86
+    Octavio,Pérez,HON,WR,36,37
+    Zavier,Perkins,FA,LB,38,8
+    Eeeeeeee,phenssta,COL,WR,35,29
+    Brooks,Piggott,SJS,CB,39,29
+    Mabel,Pines,BAL,DE,36,8
+    Dominos,Pizzaman,FA,LB,30,77
+    Good,Player,OCO,DE,39,77
+    PeePee,Poop-Eater Sr,NOLA,WR,36,8
+    Derrick,Prince,CTC,WR,36,16
+    Apollo,Program,CHI,CB,39,24
+    Patty,Pumpernickel,COL,DT,35,50
+    Ceti,Pyxis,BAL,RB,36,9
+    Quendyn,Quarterstorm,CHI,CB,36,26
+    Armor,Queen,BER,RB,38,12
+    Emerson,Quinn,ARI,DT,36,82
+    Carly,Rae Jensen,AUS,DT,38,1
+    Adam,Rage,NOLA,CB,37,10
+    NCADV,RAINN,COL,WR,39,42
+    Gore Done,Ram Say,YKW,SS,38,6
+    Rodka,Raskolnikov,FA,WR,31,86
+    IsHe,ReallyInvisible,NOLA,T,28,6
+    Dub,Redd,NYS,DT,41,83
+    Pilot,RedSun,CTC,G,35,64
+    Joseph,Reed,CHI,DT,36,96
+    Ignatius,Reilly,ARI,LB,36,57
+    Cape The Party,Rhino,BER,RB,40,16
+    Teddy,Rhinoback,YKW,DT,38,71
+    Rocky,Rhoads,SAR,SS,32,88
+    Chim,Rickles,NOLA,FS,34,75
+    John,Riggins,FA,RB,32,44
+    Casino,Robin,BAL,DT,38,1
+    Sean,Robinson,NYS,WR,41,18
+    Thomas,Robinson,OCO,WR,36,21
+    Rockbot,Rockbo,HON,WR,36,15
+    Dennis,Rodman,ARI,T,36,78
+    Bender,Rodriguez,FA,LB,28,55
+    Branden,Rojas,YKW,WR,39,18
+    Spicy,Ron,AUS,LB,32,7
+    Rumble,Ronson,CHI,LB,34,22
+    Rodney,Rosadino,NOLA,LB,41,93
+    Arnie,Rufus,NYS,DE,32,95
+    Jimmy,Ryder,CHI,WR,40,9
+    Wendell,Sailor,ARI,QB,31,9
+    Lucius,Salem,SAR,TE,34,66
+    Escanor,Sama,FA,WR,32,81
+    Roque,Santa-Cruz,BER,QB,36,24
+    Jean-Ralphio,Saperstein,AUS,DE,36,50
+    Rico,Savage,CHI,FS,41,10
+    Malcolm,Savage,FA,QB,31,5
+    Rean,Schwarzer,FA,FS,29,42
+    Mike,Scott,SJS,DE,36,84
+    Lionel,Scrimmage,NYS,DT,40,91
+    Vincent,Sharpei Jr,FA,WR,30,17
+    Kaguya,Shinomiya,OCO,FS,33,17
+    Blibby,Shpoopy,NOLA,RB,37,11
+    Outlaw Mode,Sicko,ARI,CB,35,32
+    Diggs,Sideline-touchdown,BER,FS,38,27
+    Trent,Silverback,HON,C,41,13
+    Anthony,Simmons II,NYS,TE,40,80
+    Bageshwari,Singh,CTC,CB,34,11
+    NotSo,Smart,ARI,FS,40,20
+    Joe,Smokes,AUS,LB,33,96
+    Jay,Spears,YKW,SS,31,5
+    Calvin,Spiff,YKW,WR,35,10
+    Amari,Springer,ARI,SS,31,84
+    Liath,Squirrel,HON,LB,41,52
+    Adrian,St Christmas,OCO,QB,37,4
+    Mrs,Stacks McHits,SAR,DE,32,62
+    Kotoni,Staggs,ARI,WR,31,18
+    Anthony,Stark,COL,CB,35,85
+    John,Stark VIII,OCO,LB,41,32
+    Draft,Steal,AUS,CB,35,96
+    Jason,Steele,CTC,DT,41,47
+    Aqeel,Steele,SAR,LB,36,99
+    Bong,Stevens,COL,TE,38,41
+    The,Stig,NOLA,CB,33,9
+    Captain Billy,Stinkwater,ARI,WR,34,89
+    Sam,Sung,YKW,FS,34,36
+    Sim,Sunigh,OCO,LB,39,56
+    Teemo,Swift,NYS,LB,36,22
+    Kenny,Szymborski,SJS,TE,41,86
+    GOAT,TANNK,BER,DE,38,35
+    Levy,Tate,FA,K,30,2
+    Tom,Taylor,HON,FS,34,11
+    Beniri,TChawama,NOLA,T,31,35
+    Simon,The Frog,YKW,CB,34,15
+    Otto,The Orange,SJS,TE,41,44
+    -,The Riddler,NYS,CB,41,99
+    Pasta,the Turtle,BAL,FS,32,54
+    Rab,Thecrab,NOLA,RB,35,28
+    Charlie,Thorsen,BER,CB,37,16
+    Bengal,Tigerheart,BAL,T,40,69
+    Burnt,Toast,BER,TE,41,33
+    Marvin,Toledo,COL,RB,33,15
+    Oliver,Tolliver,AUS,WR,41,17
+    Money,Tolliver,BAL,RB,40,10
+    Penger,Tolliver,BAL,TE,40,61
+    Raffaele,Tommasi,AUS,CB,36,64
+    Swantavius,Torch,FA,WR,35,23
+    Ioe,Torrent,SJS,LB,30,44
+    Michael,Touchback,NYS,RB,37,9
+    Ginand,Toxic,SAR,DE,40,9
+    Shane,Turnbull,BAL,WR,38,81
+    Franklin,Turtle,CHI,DT,32,78
+    Absolute,Unit,YKW,QB,36,99
+    Xavier,Valorian,CHI,DE,36,85
+    Carissa,van Campen,ARI,LB,35,10
+    Lukas,van Ness,NOLA,LB,41,91
+    Brian,Vincent-Vega,ARI,FS,41,27
+    Dee,Walt,CHI,FS,30,38
+    Toad,Wananapaoa,YKW,LB,40,87
+    Wing,Wang,NYS,K,42,13
+    Monty,Ward,CHI,LB,37,66
+    Kyzir,Washington,OCO,SS,35,1
+    Jason,Waterfalls,FA,LB,30,29
+    Sakeem,Webb,FA,LB,31,1
+    Bay,Webb,NYS,LB,37,43
+    Bastian,Weichselbraun,FA,TE,40,45
+    Bruce,White,NOLA,DE,41,94
+    Sexy,Wilfork,NYS,DT,36,3
+    Cedric,Wilkins II,COL,CB,31,5
+    Jake,Williams,BAL,CB,39,44
+    Nick,Williams,BER,TE,41,87
+    Justin,Willis,CTC,T,41,71
+    Dusty,Wilson,YKW,T,37,76
+    Antoine,Winfield Jr,BAL,FS,39,31
+    Donovan,Winters,ARI,QB,41,3
+    Savathûn T,Witchqueen,COL,DT,37,3
+    Sheriff,Woody,NOLA,LB,30,5
+    Tobias,Worthington III,AUS,SS,32,15
+    Sir Tyrell,XahAarone,ARI,DT,40,85
+    Grayson,Yates,COL,LB,37,98
+    King,Zeus,SAR,CB,33,1
+    Lalu Muhammad,Zohri,CHI,RB,32,13
+    Pete,Zuh,SAR,RB,36,5
+  </script>
+  </script>
+</head>
+
+<body>
+  <div class="header">
+    <div class="left-section">
+      <form class="info-icon" name="" method="" action="">
+        <input name="info-icon" type="image" src="images/info-icon.png" height="60px" onclick="showPopup('info-popup'); event.preventDefault();">
+      </form>
+      <form class="isfl-logo" name="" method="" action="">
+        <input name="isfl-logo" type="image" src="images/ISFLlogo.png" height="50px" onclick="showPopup('isfl-popup'); event.preventDefault();">
+      </form>
+      <div class="popup" id="info-popup">
+        <div class="overlay" onclick="hidePopup('info-popup')"></div>
+        <div class="content">
+          <div class="close-btn" onclick="hidePopup('info-popup')">&times;</div>
+          <h1>How to Play</h1>
+          <p>Guess the ISFL player in as few tries as possible <br> After each guess, the color of the tiles will change depending on how close your guess was to the player<br> In any column, <span class="highlight-green">green</span> represents a match<br>
+            <span class="highlight">Yellow</span> varies: For position <span class="highlight">yellow</span> indicates correct side of the ball. <br> For conference, <span class="highlight">yellow</span> indicates correct conference. <br> For number and
+            season, <span class="highlight">yellow</span> means your guess was too high.<br>
+          </p>
         </div>
-       
-        <div class="table-container" >
-            <table id="tblGuesses" class="hide">
-                <tr>
-                    <th>Player Name</th>
-                    <th>Team</th>
-                    <th>Position</th>
-                    <th>Season</th>
-                    <th>Number</th>
-                </tr>
-                <tbody>
-      
-                </tbody>
-              </table>
+      </div>
+
+      <div class="popup" id="isfl-popup">
+        <div class="overlay" onclick="hidePopup('isfl-popup')"></div>
+        <div class="content">
+          <div class="close-btn" onclick="hidePopup('isfl-popup')">&times;</div>
+          <h1>ISFL</h1>
+          <p><strong>ASFC:</strong> HON, ARI, OCO, AUS, NYS, SJS, NOLA <br>
+            <strong>NSFC:</strong> CTC, YKW, SAR, CHI, BAL, COL, BER</p>
         </div>
-    </body>
+      </div>
+    </div>
+    <script>
+      function showPopup(popupId) {
+        document.getElementById(popupId).classList.add('active');
+      }
+
+      function hidePopup(popupId) {
+        document.getElementById(popupId).classList.remove('active');
+      }
+    </script>
+    <div class="right-section">
+      <a href="https://github.com/alouaneusc/eddle-html" target="_blank"><img class="github-icon" src="images/snorlaxglasses.png"></a>
+    </div>
+  </div>
+  <div class="eddle">
+    Eddle
+  </div>
+  <div class="description-title">
+    ISFL PLAYER GUESSING GAME
+  </div>
+  <div class="guesses" id="guesses">
+    0 of 10 guesses
+  </div>
+
+  <div class="container">
+    <div class="select-box">
+      <div class="select-option">
+        <input type="text" placeholder="Enter a name" id="soValue" readonly name="">
+      </div>
+      <div class="content">
+        <div class="search">
+          <input type="text" id="optionSearch" placeholder="Search" name="">
+        </div>
+        <ul class="options" id="options">
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="table-container">
+    <table id="tblGuesses" class="hide">
+      <tr>
+        <th>Player Name</th>
+        <th>Team</th>
+        <th>Position</th>
+        <th>Season</th>
+        <th>Number</th>
+      </tr>
+      <tbody>
+
+      </tbody>
+    </table>
+  </div>
+</body>
+
 </html>
