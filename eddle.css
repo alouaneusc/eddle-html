@@ -115,7 +115,12 @@ th {
   position: relative;
 }
 
+.select-option {
+  display: flex;
+}
+
 .select-option input {
+  width: 100%;
   background-color: #fff;
   border-radius: 7px;
   cursor: pointer;
