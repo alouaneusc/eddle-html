@@ -225,7 +225,6 @@ document.addEventListener("DOMContentLoaded", function() {
                 } else if (isTeamClose()) {
                   cTeam.classList.add("close");
                 }
-                
                 if (isPosCorrect()) {
                   cPos.classList.add("correct");
                 } else if (isPosClose()) {
